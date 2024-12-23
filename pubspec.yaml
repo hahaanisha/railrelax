@@ -36,6 +36,14 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  http: ^1.2.2
+  url_launcher: ^6.3.1
+  webview_flutter: ^4.8.0
+  webview_flutter_android: ^3.16.8
+  webview_flutter_wkwebview: ^3.14.0
+  flutter_webview_plugin: ^0.4.0
+
+
 
 dev_dependencies:
   flutter_test:
@@ -47,6 +55,9 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^3.0.0
+  font_awesome_flutter: ^10.5.0
+  url_launcher: ^6.0.20
+  flutter_launcher_icons: ^0.9.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -66,6 +77,9 @@ flutter:
       - assets/chat.png
       - assets/map.png
       - assets/news.png
+      - assets/ticket.png
+      - assets/faq.png
+      - assets/fare.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
