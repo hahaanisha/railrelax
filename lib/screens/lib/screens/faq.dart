@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:railrelax/screens/lib/screens/chat.dart';
+import 'package:railrelax/screens/lib/screens/helpline.dart';
+import 'package:railrelax/screens/lib/screens/home.dart';
+import 'package:railrelax/screens/lib/screens/map.dart';
+import 'package:railrelax/screens/lib/screens/news.dart';
+import 'package:railrelax/screens/lib/screens/train.dart';
+import 'contact.dart';
 
 class FAQPage extends StatelessWidget {
   const FAQPage({super.key});
@@ -38,38 +45,38 @@ class FAQPage extends StatelessWidget {
               ),
             ),
             _buildDrawerItem(Icons.home, 'Home', context, () {
-              Navigator.pop(context);
+              Navigator.pop(context, MaterialPageRoute(builder: (context) => HomePage()));
             }),
             _buildDrawerItem(Icons.train, 'Track Trains', context, () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => FAQPage())); // Navigate to relevant page
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage())); // Navigate to relevant page
             }),
             _buildDrawerItem(Icons.chat, 'Live Chat', context, () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => FAQPage())); // Placeholder
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage())); // Placeholder
             }),
             _buildDrawerItem(Icons.map, 'Station Map', context, () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => FAQPage())); // Placeholder
+              Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage())); // Placeholder
             }),
             _buildDrawerItem(Icons.notifications, 'News & Alerts', context, () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => FAQPage())); // Placeholder
+              Navigator.push(context, MaterialPageRoute(builder: (context) => NewsPage())); // Placeholder
             }),
             _buildDrawerItem(Icons.help, 'Helpline', context, () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => FAQPage())); // Placeholder
+              Navigator.push(context, MaterialPageRoute(builder: (context) => HelplinePage())); // Placeholder
             }),
             _buildDrawerItem(Icons.question_answer, 'FAQ', context, () {
               Navigator.pop(context); // Close the drawer, we are already on the FAQ page
             }),
             Divider(color: Colors.white),
             _buildDrawerItem(Icons.share, 'Share with Friends', context, () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => FAQPage())); // Placeholder
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage())); // Placeholder
             }),
             _buildDrawerItem(Icons.contact_phone, 'Contact Us', context, () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => FAQPage())); // Placeholder
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ContactUsPage())); // Placeholder
             }),
             _buildDrawerItem(Icons.language, 'Change Language', context, () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => FAQPage())); // Placeholder
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage())); // Placeholder
             }),
             _buildDrawerItem(Icons.info, 'Terms & Conditions', context, () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => FAQPage())); // Placeholder
+              Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage())); // Placeholder
             }),
             Divider(color: Colors.white),
             // Social Media Icons
@@ -113,11 +120,11 @@ class FAQPage extends StatelessWidget {
                   SizedBox(height: 20),
 
                   // FAQ Accordion
-                  _buildFAQItem('What is RailRelax?', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+                  _buildFAQItem('What is RailRelax?', 'Railrelax is a train tracking app that uses the real-time video of the surveillance of the video cameras that are placed in each compartment of the train. This app will help the passengers to place themselves on the station according to the compartment in which they either want the space to sit or the space to stand.'),
                   _buildFAQItem('How can I track my train?', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
-                  _buildFAQItem('Is there a live chat available?', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
-                  _buildFAQItem('How do I change the language?', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
-                  _buildFAQItem('Can I access the news and alerts?', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+                  _buildFAQItem('Is there a live chat available?', 'There is a chatbot that is available on the home page when the app is opened.'),
+                  _buildFAQItem('How do I change the language?', 'At the top left side of the page press on the button with 3 lines. When you press on it a language option will be available, press on it and it will redirect you to language page.'),
+                  _buildFAQItem('Can I access the news and alerts?', 'Yes, you can access the news and alerts by pressing the news option that is available on the home page of the railrelax app.'),
                   _buildFAQItem('How to contact customer support?', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
                 ],
               ),
