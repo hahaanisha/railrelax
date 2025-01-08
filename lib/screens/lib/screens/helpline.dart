@@ -6,6 +6,7 @@ import 'package:railrelax/screens/lib/screens/map.dart';
 import 'package:railrelax/screens/lib/screens/news.dart';
 import 'package:railrelax/screens/lib/screens/train.dart';
 import 'package:railrelax/screens/lib/screens/ticket.dart';
+import 'package:railrelax/screens/lib/lang.dart';
 
 class HelplinePage extends StatelessWidget {
   const HelplinePage({super.key});
@@ -92,7 +93,7 @@ class HelplinePage extends StatelessWidget {
             // Placeholder action
           }),
           _buildDrawerItem(Icons.contact_phone, 'Contact Us', context, () {
-            // Placeholder action
+            Navigator.push(context, MaterialPageRoute(builder: (context) => LanguagePage()));
           }),
           _buildDrawerItem(Icons.language, 'Change Language', context, () {
             // Placeholder action

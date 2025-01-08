@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:railrelax/screens/lib/lang.dart';
 import 'package:railrelax/screens/lib/screens/chat.dart';
 import 'package:railrelax/screens/lib/screens/helpline.dart';
 import 'package:railrelax/screens/lib/screens/home.dart';
@@ -73,7 +74,7 @@ class FAQPage extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context) => ContactUsPage())); // Placeholder
             }),
             _buildDrawerItem(Icons.language, 'Change Language', context, () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage())); // Placeholder
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LanguagePage())); // Placeholder
             }),
             _buildDrawerItem(Icons.info, 'Terms & Conditions', context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage())); // Placeholder
