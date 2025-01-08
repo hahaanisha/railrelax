@@ -121,11 +121,11 @@ class FAQPage extends StatelessWidget {
 
                   // FAQ Accordion
                   _buildFAQItem('What is RailRelax?', 'Railrelax is a train tracking app that uses the real-time video of the surveillance of the video cameras that are placed in each compartment of the train. This app will help the passengers to place themselves on the station according to the compartment in which they either want the space to sit or the space to stand.'),
-                  _buildFAQItem('How can I track my train?', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+                  _buildFAQItem('How can I track my train?', 'There is an option to track trains on the home page. By clicking on the option you will be redirected to a new page which provides a list of trains that will tell which train is their at which station and how late that train is.'),
                   _buildFAQItem('Is there a live chat available?', 'There is a chatbot that is available on the home page when the app is opened.'),
                   _buildFAQItem('How do I change the language?', 'At the top left side of the page press on the button with 3 lines. When you press on it a language option will be available, press on it and it will redirect you to language page.'),
                   _buildFAQItem('Can I access the news and alerts?', 'Yes, you can access the news and alerts by pressing the news option that is available on the home page of the railrelax app.'),
-                  _buildFAQItem('How to contact customer support?', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'),
+                  _buildFAQItem('How to contact customer support?', 'In hte menu option at the top right corner, the ContactUs option is available. By pressing that button you will redirected to the ContactUs page.'),
                 ],
               ),
             ),
