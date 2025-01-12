@@ -11,7 +11,9 @@ import 'package:railrelax/screens/lib/screens/ticket.dart';
 import 'PoliceStationLocator.dart';
 import 'contact.dart';
 import 'fare_calculator.dart';
-
+import 'package:provider/provider.dart';
+import 'package:railrelax/screens/lib/l10n/app_localizations.dart';
+import 'package:railrelax/screens/lib/providers/language_provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
