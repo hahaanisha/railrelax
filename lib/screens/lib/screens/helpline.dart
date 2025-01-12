@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:railrelax/screens/lib/screens/chat.dart';
 import 'package:railrelax/screens/lib/screens/faq.dart';
+import 'package:railrelax/screens/lib/screens/home.dart';
 import 'package:railrelax/screens/lib/screens/railwayhelpline.dart';
 import 'package:railrelax/screens/lib/screens/map.dart';
 import 'package:railrelax/screens/lib/screens/news.dart';
@@ -67,7 +68,7 @@ class HelplinePage extends StatelessWidget {
             ),
           ),
           _buildDrawerItem(Icons.home, 'Home', context, () {
-            Navigator.pop(context);
+            Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
             // Add Home navigation action here
           }),
           _buildDrawerItem(Icons.train, 'Track Trains', context, () {

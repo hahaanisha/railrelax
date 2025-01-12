@@ -46,7 +46,7 @@ class FAQPage extends StatelessWidget {
               ),
             ),
             _buildDrawerItem(Icons.home, 'Home', context, () {
-              Navigator.pop(context, MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
             }),
             _buildDrawerItem(Icons.train, 'Track Trains', context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage())); // Navigate to relevant page

@@ -46,7 +46,7 @@ class LanguagePage extends StatelessWidget {
               ),
             ),
             _buildDrawerItem(Icons.home, 'Home', context,() {
-              Navigator.pop(context, MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
             }),
             _buildDrawerItem(Icons.train, 'Track Trains', context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage()));
@@ -75,7 +75,7 @@ class LanguagePage extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context) => ContactUsPage())); // Placeholder
             }),
             _buildDrawerItem(Icons.language, 'Change Language', context, () {
-              Navigator.push(context); // Placeholder
+              Navigator.pop(context); // Placeholder
             }),
             _buildDrawerItem(Icons.info, 'Terms & Conditions', context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage())); // Placeholder
@@ -117,4 +117,82 @@ class LanguagePage extends StatelessWidget {
       ),
     );
   }
+}
+Widget _buildTopBox(BuildContext context, String title, String imagePath, Widget page) {
+  return InkWell(
+    onTap: () {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+    },
+    child: Container(
+      width: MediaQuery.of(context).size.width * 0.4, // Width adjusted to screen size
+      height: 120,
+      decoration: BoxDecoration(
+        color: Colors.white54,
+        borderRadius: BorderRadius.circular(8.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black12,
+            blurRadius: 4.0,
+            offset: Offset(2, 2),
+          ),
+        ],
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(imagePath, height: 60),
+          SizedBox(height: 10),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+// Vertical gray boxes
+Widget _buildGrayBox(BuildContext context, IconData icon, String title, Widget page) {
+  return InkWell(
+    onTap: () {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+    },
+    child: Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      padding: EdgeInsets.all(12),
+      width: MediaQuery.of(context).size.width * 0.9, // 90% of screen width
+      decoration: BoxDecoration(
+        color: Colors.grey.shade300,
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, color: Colors.black, size: 30),
+          SizedBox(width: 20),
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              color: Colors.black,
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+// Drawer item builder
+ListTile _buildDrawerItem(IconData icon, String title, BuildContext context, VoidCallback onTap) {
+  return ListTile(
+    leading: Icon(icon, color: Colors.white),
+    title: Text(title, style: TextStyle(color: Colors.white)),
+    onTap: onTap,
+  );
 }
