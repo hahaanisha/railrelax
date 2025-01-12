@@ -7,6 +7,7 @@ class AppLocalizations {
 
   static Map<String, Map<String, String>> _localizedValues = {
     'en': {
+      'railrelax': 'RailRelax',
       'welcome': 'Welcome to Railrelax',
       'tagline': 'Enhancing train travel comfort',
       'changeLanguage': 'Change Language',
@@ -23,6 +24,7 @@ class AppLocalizations {
       'termsConditions': 'Terms & Conditions'
     },
     'hi': {
+      'railrelax': 'रेलरिलैक्स',
       'welcome': 'रेलरिलैक्स में आपका स्वागत है',
       'tagline': 'ट्रेन यात्रा आराम बढ़ाना',
       'changeLanguage': 'भाषा बदलें',
@@ -39,6 +41,7 @@ class AppLocalizations {
       'termsConditions': 'नियम और शर्तें'
     },
     'mr': {
+      'railrelax': 'रेल्वे आराम',
       'welcome': 'रेलरिलॅक्स मध्ये आपले स्वागत आहे',
       'tagline': 'ट्रेन प्रवास आराम वाढवणे',
       'changeLanguage': 'भाषा बदला',

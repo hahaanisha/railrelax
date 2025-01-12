@@ -26,7 +26,7 @@ class LanguagePage extends StatelessWidget {
       key: scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('Change the language'),
+        title: Text(appLocalizations.getText('changeLanguage')),
         leading: IconButton(
           icon: Icon(Icons.menu),
           onPressed: () {
@@ -44,7 +44,7 @@ class LanguagePage extends StatelessWidget {
                 color: Colors.blue.shade700,
               ),
               child: Text(
-                'Menu',
+                appLocalizations.getText('menu'),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
@@ -88,7 +88,7 @@ class LanguagePage extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(
                   builder: (context) => ContactUsPage())); // Placeholder
             }),
-            _buildDrawerItem(Icons.language, 'Change Language', context, () {
+            _buildDrawerItem(Icons.language, appLocalizations.getText('changeLanguage'), context, () {
               Navigator.pop(context); // Placeholder
             }),
             _buildDrawerItem(Icons.info, appLocalizations.getText('termsConditions'), context, () {
