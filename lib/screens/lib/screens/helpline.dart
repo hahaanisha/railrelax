@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:railrelax/screens/lib/screens/chat.dart';
+import 'package:railrelax/screens/lib/screens/contact.dart';
 import 'package:railrelax/screens/lib/screens/faq.dart';
 import 'package:railrelax/screens/lib/screens/home.dart';
 import 'package:railrelax/screens/lib/screens/railwayhelpline.dart';
@@ -94,10 +95,10 @@ class HelplinePage extends StatelessWidget {
             // Placeholder action
           }),
           _buildDrawerItem(Icons.contact_phone, 'Contact Us', context, () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) => LanguagePage()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ContactUsPage()));
           }),
           _buildDrawerItem(Icons.language, 'Change Language', context, () {
-            // Placeholder action
+            Navigator.push(context, MaterialPageRoute(builder: (context) => LanguagePage()));
           }),
           _buildDrawerItem(Icons.info, 'Terms & Conditions', context, () {
             // Placeholder action
