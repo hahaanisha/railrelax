@@ -1,0 +1,25 @@
+{
+  "helplines": [
+    {
+      "name": "Mumbai Police ElderLine",
+      "type": "Government",
+      "address": "Mumbai",
+      "phone": "1090",
+      "emergencyNum": "112"
+    },
+    {
+      "name": "HelpAge India Helpline",
+      "type": "NGO",
+      "address": "Mumbai",
+      "phone": "1800-180-1253",
+      "emergencyNum": "112"
+    },
+    {
+      "name": "National Elder Helpline",
+      "type": "Government",
+      "address": "India",
+      "phone": "14567",
+      "emergencyNum": "112"
+    }
+  ]
+}

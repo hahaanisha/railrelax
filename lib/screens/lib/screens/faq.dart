@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:railrelax/screens/lib/lang.dart';
 import 'package:railrelax/screens/lib/screens/chat.dart';
-import 'package:railrelax/screens/lib/screens/helpline.dart';
+import 'package:railrelax/screens/lib/screens/helpline/helpline.dart';
 import 'package:railrelax/screens/lib/screens/home.dart';
 import 'package:railrelax/screens/lib/screens/map.dart';
 import 'package:railrelax/screens/lib/screens/news.dart';

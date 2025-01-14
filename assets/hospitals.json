@@ -1,0 +1,109 @@
+{
+  "hospitals": [
+    {
+      "name": "Dr. B.A.M Hospital (Railway Hospital)",
+      "address": "Dr Babasaheb Ambedkar Road, Byculla East, Mumbai - 400027",
+      "phone": "022-23027000",
+      "emergencyNum": "108",
+      "type": "Railway Hospital"
+    },
+    {
+      "name": "JJ Hospital",
+      "address": "J J Marg, Nagpada-Mumbai Central, Mumbai - 400008",
+      "phone": "022-23735555",
+      "emergencyNum": "022-23735599",
+      "type": "Government Hospital"
+    },
+    {
+      "name": "KEM Hospital",
+      "address": "Acharya Donde Marg, Parel, Mumbai - 400012",
+      "phone": "022-24107000",
+      "emergencyNum": "022-24107001",
+      "type": "Government Hospital"
+    },
+    {
+      "name": "Lilavati Hospital",
+      "address": "A-791, Bandra Reclamation Road, Bandra West, Mumbai - 400050",
+      "phone": "022-26568000",
+      "emergencyNum": "022-26568080",
+      "type": "Private Hospital"
+    },
+    {
+      "name": "Tata Memorial Hospital",
+      "address": "Dr. E Borges Road, Parel, Mumbai - 400012",
+      "phone": "022-24177000",
+      "emergencyNum": "022-24170000",
+      "type": "Government Cancer Hospital"
+    },
+    {
+      "name": "Fortis Hospital Mulund",
+      "address": "Mulund Goregaon Link Road, Mulund West, Mumbai - 400078",
+      "phone": "022-67994444",
+      "emergencyNum": "022-67994444",
+      "type": "Private Hospital"
+    },
+    {
+      "name": "Apollo Hospital Navi Mumbai",
+      "address": "Plot #13, Sector 23, Parsik Hill Road, CBD Belapur, Navi Mumbai - 400614",
+      "phone": "022-62885888",
+      "emergencyNum": "022-62885888",
+      "type": "Private Hospital"
+    },
+    {
+      "name": "Hiranandani Hospital Vashi",
+      "address": "Mini Sea Shore Road, Sector 10, Vashi, Navi Mumbai - 400703",
+      "phone": "022-67319999",
+      "emergencyNum": "022-67319911",
+      "type": "Private Hospital"
+    },
+    {
+      "name": "MGM Hospital Vashi",
+      "address": "Plot No 35, Sector 3, Vashi, Navi Mumbai - 400703",
+      "phone": "022-61526666",
+      "emergencyNum": "022-61526666",
+      "type": "Private Hospital"
+    },
+    {
+      "name": "Sion Hospital",
+      "address": "Sion West, Mumbai - 400022",
+      "phone": "022-24076381",
+      "emergencyNum": "022-24076381",
+      "type": "Government Hospital"
+    },
+    {
+      "name": "Nair Hospital",
+      "address": "Dr. A.L. Nair Road, Mumbai Central, Mumbai - 400008",
+      "phone": "022-23027000",
+      "emergencyNum": "022-23027001",
+      "type": "Government Hospital"
+    },
+    {
+      "name": "DY Patil Hospital",
+      "address": "Sector 5, Nerul, Navi Mumbai - 400706",
+      "phone": "022-27709227",
+      "emergencyNum": "022-27709200",
+      "type": "Private Teaching Hospital"
+    },
+    {
+      "name": "Breach Candy Hospital",
+      "address": "60 A, Bhulabhai Desai Road, Mumbai - 400026",
+      "phone": "022-23667888",
+      "emergencyNum": "022-23667888",
+      "type": "Private Hospital"
+    },
+    {
+      "name": "Kokilaben Dhirubhai Ambani Hospital",
+      "address": "Rao Saheb Achutrao Patwardhan Marg, Four Bungalows, Andheri West, Mumbai - 400053",
+      "phone": "022-42699999",
+      "emergencyNum": "022-42699999",
+      "type": "Private Hospital"
+    },
+    {
+      "name": "NMMC Hospital Vashi",
+      "address": "Sector 10A, Vashi, Navi Mumbai - 400703",
+      "phone": "022-27578901",
+      "emergencyNum": "108",
+      "type": "Government Hospital"
+    }
+  ]
+}

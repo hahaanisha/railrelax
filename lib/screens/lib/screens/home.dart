@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:railrelax/screens/lib/lang.dart';
 import 'package:railrelax/screens/lib/screens/chat.dart';
 import 'package:railrelax/screens/lib/screens/faq.dart';
-import 'package:railrelax/screens/lib/screens/helpline.dart';
+import 'package:railrelax/screens/lib/screens/helpline/helpline.dart';
 import 'package:railrelax/screens/lib/screens/map.dart';
 import 'package:railrelax/screens/lib/screens/news.dart';
 import 'package:railrelax/screens/lib/screens/train.dart';
 import 'package:railrelax/screens/lib/screens/ticket.dart';
 
-import 'PoliceStationLocator.dart';
+import 'helpline/PoliceStationLocator.dart';
 import 'contact.dart';
 import 'fare_calculator.dart';
 
@@ -23,6 +23,7 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       key: scaffoldKey,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue,
         title: Text('RailRelax'),
@@ -109,15 +110,60 @@ class HomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Stack(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    height: 200,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage('assets/homepage_banner.png'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+
+                  ),
+                  Positioned(
+                    bottom: 10,
+                    left: MediaQuery.of(context).size.width / 2 - 194,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.white,
+                        foregroundColor: Colors.blueAccent,
+                        padding: EdgeInsets.symmetric(horizontal: 18, vertical: 4),
+                        textStyle: TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+                      ),
+                      onPressed: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage()));
+                      },
+                      child: Text('Try Now'),
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(height: 20),
               // Search bar
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Search...',
-                    prefixIcon: Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Colors.white, // Background color of the search bar
+                    borderRadius: BorderRadius.circular(30.0), // Rounded corners
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5), // Shadow color
+                        blurRadius: 5, // Spread of the shadow
+                        offset: Offset(0, 3), // Position of the shadow
+                      ),
+                    ],
+                  ),
+                  child: TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Search',
+                      hintStyle: TextStyle(color: Colors.grey), // Hint text style
+                      prefixIcon: Icon(Icons.search, color: Colors.grey), // Search icon
+                      border: InputBorder.none, // Removes the default border
+                      contentPadding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
                     ),
                   ),
                 ),
