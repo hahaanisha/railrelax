@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:railrelax/screens/lib/screens/apifetch.dart';
-import 'compartment_page.dart'; // Import the CompartmentPage
+import 'compartment_page.dart';// Import the CompartmentPage
+import 'package:provider/provider.dart';
+import 'package:railrelax/screens/lib/l10n/app_localizations.dart';
+import 'package:railrelax/screens/lib/providers/language_provider.dart';
 
 class TrainPage extends StatelessWidget {
   const TrainPage({super.key});

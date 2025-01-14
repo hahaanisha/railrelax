@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:provider/provider.dart';
+import 'package:railrelax/screens/lib/l10n/app_localizations.dart';
+import 'package:railrelax/screens/lib/providers/language_provider.dart';
 
 class TicketPage extends StatefulWidget {
   @override

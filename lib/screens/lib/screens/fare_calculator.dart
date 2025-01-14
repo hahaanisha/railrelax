@@ -137,19 +137,19 @@ class _FareCalculatorPageState extends State<FareCalculatorPage> {
                 });
               },
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 15),
             ElevatedButton(
               onPressed: () {
                 calculate(); // Calculate fare and show the cost table
               },
               child: Text('Search Fare'),
             ),
-            SizedBox(height: 30),
+            SizedBox(height: 15),
             // Text(
             //   'Fare: \$${fare.toStringAsFixed(2)}',
             //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             // ),
-            SizedBox(height: 30),
+            SizedBox(height: 15),
 
             // Show the cost table image if fare is calculated
             if (showCostTable)

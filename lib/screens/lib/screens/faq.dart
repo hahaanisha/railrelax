@@ -7,6 +7,9 @@ import 'package:railrelax/screens/lib/screens/map.dart';
 import 'package:railrelax/screens/lib/screens/news.dart';
 import 'package:railrelax/screens/lib/screens/train.dart';
 import 'contact.dart';
+import 'package:provider/provider.dart';
+import 'package:railrelax/screens/lib/l10n/app_localizations.dart';
+import 'package:railrelax/screens/lib/providers/language_provider.dart';
 
 class FAQPage extends StatelessWidget {
   const FAQPage({super.key});
@@ -46,7 +49,7 @@ class FAQPage extends StatelessWidget {
               ),
             ),
             _buildDrawerItem(Icons.home, 'Home', context, () {
-              Navigator.pop(context, MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
             }),
             _buildDrawerItem(Icons.train, 'Track Trains', context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage())); // Navigate to relevant page
