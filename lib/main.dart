@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'screens/lib/screens/splash.dart';// Adjust the import patt
 
-
 void main() {
   runApp(MyApp());
 }
