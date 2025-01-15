@@ -78,21 +78,38 @@ class _FareCalculatorPageState extends State<FareCalculatorPage> {
     int indexTo = stations.indexOf(to);
 
     // Example: fare is based on the number of stations between the two
-    return (indexTo - indexFrom).abs() * 10.0; // Example: 10 currency units per station
+    if (indexFrom == -1 || indexTo == -1) {
+      throw Exception('Invalid station selected');
+    }
+
+    return (indexTo - indexFrom).abs() * 10.0;
   }
 
   void calculate() {
-    if (selectedFrom != null && selectedTo != null && selectedFrom != selectedTo) {
-      setState(() {
-        fare = calculateFare(selectedFrom!, selectedTo!);
-        showCostTable = true; // Show the cost table when both stations are selected
-      });
-    } else {
-      setState(() {
-        fare = 0.0; // Reset fare if inputs are invalid
-        showCostTable = false; // Hide the cost table if inputs are invalid
-      });
+    if (selectedFrom == null || selectedTo == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Please select both stations'))
+      );
+      return;
     }
+
+    if (selectedFrom == selectedTo) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Please select different stations'))
+      );
+      return;
+    }
+
+    setState(() {
+      try {
+        fare = calculateFare(selectedFrom!, selectedTo!);
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text('Error calculating fare'))
+        );
+        fare = 0.0;
+      }
+    });
   }
 
   @override
@@ -106,36 +123,52 @@ class _FareCalculatorPageState extends State<FareCalculatorPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            DropdownButton<String>(
-              hint: Text('Select From Station'),
-              value: selectedFrom,
-              items: stations.map((station) {
-                return DropdownMenuItem(
-                  value: station,
-                  child: Text(station),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedFrom = value;
-                });
-              },
+            // Wrap dropdown in container with width constraint
+            Container(
+              width: double.infinity, // Takes full width
+              child: DropdownButton<String>(
+                hint: Text('Select From Station'),
+                value: selectedFrom,
+                isExpanded: true, // Important! Makes dropdown fit in container
+                items: stations.map((station) {
+                  return DropdownMenuItem(
+                    value: station,
+                    child: Text(
+                      station,
+                      overflow: TextOverflow.ellipsis, // Handles text overflow
+                    ),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    selectedFrom = value;
+                  });
+                },
+              ),
             ),
             SizedBox(height: 20),
-            DropdownButton<String>(
-              hint: Text('Select To Station'),
-              value: selectedTo,
-              items: stations.map((station) {
-                return DropdownMenuItem(
-                  value: station,
-                  child: Text(station),
-                );
-              }).toList(),
-              onChanged: (value) {
-                setState(() {
-                  selectedTo = value;
-                });
-              },
+            // Same for second dropdown
+            Container(
+              width: double.infinity,
+              child: DropdownButton<String>(
+                hint: Text('Select To Station'),
+                value: selectedTo,
+                isExpanded: true,
+                items: stations.map((station) {
+                  return DropdownMenuItem(
+                    value: station,
+                    child: Text(
+                      station,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    selectedTo = value;
+                  });
+                },
+              ),
             ),
             SizedBox(height: 15),
             ElevatedButton(
@@ -152,11 +185,18 @@ class _FareCalculatorPageState extends State<FareCalculatorPage> {
             SizedBox(height: 15),
 
             // Show the cost table image if fare is calculated
-            if (showCostTable)
-              Container(
-                width: 400, // Set width of the image
-                height: 400, // Set height of the image
-                child: Image.asset('assets/fare.jpeg'), // Replace with the actual path of your image
+            if (fare > 0)
+              AspectRatio(
+                aspectRatio: 1,
+                child: FittedBox(
+                  fit: BoxFit.contain,
+                  child: Image.asset(
+                    'assets/fare.jpeg',
+                    errorBuilder: (context, error, stackTrace) {
+                      return Center(child: Text('Unable to load fare table'));
+                    },
+                  ),
+                ),
               ),
           ],
         ),

@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text('RailRelax'),
+        title: Text(appLocalizations.getText('railrelax')),
         leading: IconButton(
           icon: Icon(Icons.menu),
           onPressed: () {
@@ -49,7 +49,7 @@ class HomePage extends StatelessWidget {
                 color: Colors.blue.shade700,
               ),
               child: Text(
-                'Menu',
+                appLocalizations.getText('menu'),
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
