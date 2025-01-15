@@ -22,6 +22,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // GlobalKey to control the scaffold state
     final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+    final appLocalizations = AppLocalizations(context
+        .watch<LanguageProvider>()
+        .locale);
 
     return Scaffold(
       key: scaffoldKey,
@@ -53,39 +56,39 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            _buildDrawerItem(Icons.home, 'Home', context,() {
+            _buildDrawerItem(Icons.home, appLocalizations.getText('home'), context,() {
               Navigator.pop(context);
             }),
-            _buildDrawerItem(Icons.train, 'Track Trains', context, () {
+            _buildDrawerItem(Icons.train, appLocalizations.getText('trackTrains'), context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage()));
             }),
-            _buildDrawerItem(Icons.chat, 'Live Chat', context, () {
+            _buildDrawerItem(Icons.chat, appLocalizations.getText('liveChat'), context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage()));
             }),
-            _buildDrawerItem(Icons.map, 'Station Map', context, () {
+            _buildDrawerItem(Icons.map, appLocalizations.getText('stationMap'), context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => MapPage()));
             }),
-            _buildDrawerItem(Icons.notifications, 'News & Alerts', context, () {
+            _buildDrawerItem(Icons.notifications, appLocalizations.getText('newsAlerts'), context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => NewsPage()));
             }),
-            _buildDrawerItem(Icons.help, 'Helpline', context, () {
+            _buildDrawerItem(Icons.help, appLocalizations.getText('helpline'), context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => HelplinePage())); // Placeholder
             }),
-            _buildDrawerItem(Icons.question_answer, 'FAQ', context, () {
+            _buildDrawerItem(Icons.question_answer, appLocalizations.getText('faq'), context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => FAQPage())); // Placeholder
             }),
             Divider(color: Colors.white), // Divider line
 
-            _buildDrawerItem(Icons.share, 'Share with Friends', context, () {
+            _buildDrawerItem(Icons.share, appLocalizations.getText('shareWithFriends'), context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage())); // Placeholder
             }),
-            _buildDrawerItem(Icons.contact_phone, 'Contact Us', context, () {
+            _buildDrawerItem(Icons.contact_phone, appLocalizations.getText('contactUs'), context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => ContactUsPage())); // Placeholder
             }),
-            _buildDrawerItem(Icons.language, 'Change Language', context, () {
+            _buildDrawerItem(Icons.language, appLocalizations.getText('changeLanguage'), context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => LanguagePage())); // Placeholder
             }),
-            _buildDrawerItem(Icons.info, 'Terms & Conditions', context, () {
+            _buildDrawerItem(Icons.info, appLocalizations.getText('termsConditions'), context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage())); // Placeholder
             }),
 
