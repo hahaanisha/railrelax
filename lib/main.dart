@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-
 import 'screens/lib/screens/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
