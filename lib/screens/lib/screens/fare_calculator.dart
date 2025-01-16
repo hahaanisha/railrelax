@@ -1,114 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:railrelax/screens/lib/providers/fare_provider.dart';
 
-class FareCalculatorPage extends StatefulWidget {
+class FareCalculatorScreen extends StatefulWidget {
   @override
-  _FareCalculatorPageState createState() => _FareCalculatorPageState();
+  _FareCalculatorScreenState createState() => _FareCalculatorScreenState();
 }
 
-class _FareCalculatorPageState extends State<FareCalculatorPage> {
-  final List<String> stations = [
-    'Aamchi Mumbai',
-    'Ambernath',
-    'Andheri',
-    'Aundh',
-    'Badlapur',
-    'Bandra',
-    'Bhandup',
-    'Bhayandar',
-    'Borivali',
-    'Byculla',
-    'Chhatrapati Shivaji Maharaj Terminus',
-    'Chinchwad',
-    'Dadar',
-    'Dahisar',
-    'D N Nagar',
-    'Ghatkopar',
-    'Ghatkopar (W)',
-    'Grant Road',
-    'Jaslok Hospital',
-    'Junction',
-    'Kalyan',
-    'Karjat',
-    'Khar',
-    'Kharghar',
-    'Khandeshwar',
-    'Kurla',
-    'LBS Marg',
-    'Lokmanya Tilak',
-    'Malad',
-    'Mankhurd',
-    'Matunga',
-    'Mira Road',
-    'Mulund',
-    'Mumbai Chhatrapati Shivaji Maharaj Airport',
-    'Mumbai CST',
-    'Mumbai Dadar',
-    'Mumbai Lokmanya Tilak',
-    'Nalasopara',
-    'Navi Mumbai',
-    'Nehru Planetarium',
-    'Parel',
-    'Panvel',
-    'Powai',
-    'Rabale',
-    'Raigad',
-    'Sion',
-    'Sion Koliwada',
-    'Thane',
-    'Thakur Complex',
-    'Uran',
-    'Vashi',
-    'Vile Parle',
-    'Wadala',
-    'Wadala (East)',
-    'Wadala (West)',
-    'Western Express Highway',
-    'Yesvantpur',
-    'Zirakpur',
-  ]; // Complete list of Mumbai stations (A to Z)
+class _FareCalculatorScreenState extends State<FareCalculatorScreen> {
+  String selectedSource = '';
+  String selectedDestination = '';
+  String ticketType = 'single';
+  String ticketClass = 'SECOND';
+  double calculatedFare = 0;
 
-  String? selectedFrom;
-  String? selectedTo;
-  double fare = 0.0;
-  bool showCostTable = false; // Boolean to show/hide the cost table image
+  final Map<String, Map<String, double>> stationDistances = {
+    'Churchgate': {
+      'Marine Lines': 1.2,
+      'Charni Road': 2.4,
+      'Grant Road': 4.1,
+    },
+    'Marine Lines': {
+      'Charni Road': 1.2,
+      'Grant Road': 2.9,
+    },
+    // Add more station distances
+  };
 
-  // Sample fare structure (replace with your actual fare calculation logic)
-  double calculateFare(String from, String to) {
-    int indexFrom = stations.indexOf(from);
-    int indexTo = stations.indexOf(to);
-
-    // Example: fare is based on the number of stations between the two
-    if (indexFrom == -1 || indexTo == -1) {
-      throw Exception('Invalid station selected');
-    }
-
-    return (indexTo - indexFrom).abs() * 10.0;
-  }
-
-  void calculate() {
-    if (selectedFrom == null || selectedTo == null) {
+  void calculateFare() {
+    if (selectedSource.isEmpty || selectedDestination.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Please select both stations'))
+        SnackBar(content: Text('Please select both stations')),
       );
       return;
     }
 
-    if (selectedFrom == selectedTo) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Please select different stations'))
-      );
-      return;
-    }
+    double distance = stationDistances[selectedSource]?[selectedDestination] ?? 0;
 
     setState(() {
-      try {
-        fare = calculateFare(selectedFrom!, selectedTo!);
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text('Error calculating fare'))
-        );
-        fare = 0.0;
-      }
+      calculatedFare = FareCalculator.calculateFare(
+        distance: distance,
+        ticketClass: ticketClass,
+        ticketType: ticketType,
+      );
     });
   }
 
@@ -116,88 +49,145 @@ class _FareCalculatorPageState extends State<FareCalculatorPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Fare Calculator'),
+        title: Text('Train Fare Calculator'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Wrap dropdown in container with width constraint
-            Container(
-              width: double.infinity, // Takes full width
-              child: DropdownButton<String>(
-                hint: Text('Select From Station'),
-                value: selectedFrom,
-                isExpanded: true, // Important! Makes dropdown fit in container
-                items: stations.map((station) {
-                  return DropdownMenuItem(
-                    value: station,
-                    child: Text(
-                      station,
-                      overflow: TextOverflow.ellipsis, // Handles text overflow
+            Card(
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        labelText: 'Source Station',
+                        border: OutlineInputBorder(),
+                      ),
+                      value: selectedSource.isEmpty ? null : selectedSource,
+                      hint: Text('Select Source Station'),
+                      items: stationDistances.keys.map((station) {
+                        return DropdownMenuItem(
+                          value: station,
+                          child: Text(station),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedSource = value ?? '';
+                          selectedDestination = '';
+                        });
+                      },
                     ),
-                  );
-                }).toList(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedFrom = value;
-                  });
-                },
+                    SizedBox(height: 16),
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        labelText: 'Destination Station',
+                        border: OutlineInputBorder(),
+                      ),
+                      value: selectedDestination.isEmpty ? null : selectedDestination,
+                      hint: Text('Select Destination Station'),
+                      items: selectedSource.isEmpty
+                          ? []
+                          : stationDistances[selectedSource]?.keys.map((station) {
+                        return DropdownMenuItem(
+                          value: station,
+                          child: Text(station),
+                        );
+                      }).toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          selectedDestination = value ?? '';
+                        });
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(height: 20),
-            // Same for second dropdown
-            Container(
-              width: double.infinity,
-              child: DropdownButton<String>(
-                hint: Text('Select To Station'),
-                value: selectedTo,
-                isExpanded: true,
-                items: stations.map((station) {
-                  return DropdownMenuItem(
-                    value: station,
-                    child: Text(
-                      station,
-                      overflow: TextOverflow.ellipsis,
+            SizedBox(height: 16),
+            Card(
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Column(
+                  children: [
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        labelText: 'Ticket Type',
+                        border: OutlineInputBorder(),
+                      ),
+                      value: ticketType,
+                      items: [
+                        DropdownMenuItem(value: 'single', child: Text('Single Journey')),
+                        DropdownMenuItem(value: 'return', child: Text('Return Journey')),
+                        DropdownMenuItem(value: 'monthly', child: Text('Monthly Pass')),
+                        DropdownMenuItem(value: 'quarterly', child: Text('Quarterly Pass')),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          ticketType = value!;
+                        });
+                      },
                     ),
-                  );
-                }).toList(),
-                onChanged: (value) {
-                  setState(() {
-                    selectedTo = value;
-                  });
-                },
+                    SizedBox(height: 16),
+                    DropdownButtonFormField<String>(
+                      decoration: InputDecoration(
+                        labelText: 'Class',
+                        border: OutlineInputBorder(),
+                      ),
+                      value: ticketClass,
+                      items: [
+                        DropdownMenuItem(value: 'FIRST', child: Text('First Class')),
+                        DropdownMenuItem(value: 'SECOND', child: Text('Second Class')),
+                      ],
+                      onChanged: (value) {
+                        setState(() {
+                          ticketClass = value!;
+                        });
+                      },
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 24),
             ElevatedButton(
-              onPressed: () {
-                calculate(); // Calculate fare and show the cost table
-              },
-              child: Text('Search Fare'),
+              onPressed: calculateFare,
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: Text('Calculate Fare'),
+              ),
+              style: ElevatedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
             ),
-            SizedBox(height: 15),
-            // Text(
-            //   'Fare: \$${fare.toStringAsFixed(2)}',
-            //   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-            // ),
-            SizedBox(height: 15),
-
-            // Show the cost table image if fare is calculated
-            if (fare > 0)
-              AspectRatio(
-                aspectRatio: 1,
-                child: FittedBox(
-                  fit: BoxFit.contain,
-                  child: Image.asset(
-                    'assets/fare.jpeg',
-                    errorBuilder: (context, error, stackTrace) {
-                      return Center(child: Text('Unable to load fare table'));
-                    },
+            if (calculatedFare > 0) ...[
+              SizedBox(height: 24),
+              Card(
+                child: Padding(
+                  padding: EdgeInsets.all(16.0),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Fare Amount',
+                        style: Theme.of(context).textTheme.titleLarge,
+                      ),
+                      SizedBox(height: 8),
+                      Text(
+                        '₹${calculatedFare.toStringAsFixed(2)}',
+                        style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                          color: Theme.of(context).primaryColor,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
+            ],
           ],
         ),
       ),
