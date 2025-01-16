@@ -35,6 +35,7 @@ dependencies:
     sdk: flutter
   provider: ^6.0.0
   shared_preferences: ^2.0.0
+  csv: ^5.0.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -92,6 +93,7 @@ flutter:
       - assets/homepage_banner.png
       - assets/hospitals.json
       - assets/elderly_helplines.json
+      - assets/train_chatbot - Sheet1.csv
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

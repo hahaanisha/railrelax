@@ -208,7 +208,7 @@ class HomePage extends StatelessWidget {
               _buildGrayBox(context, Icons.help, 'Helpline', HelplinePage()),
               _buildGrayBox(context, Icons.local_police, 'Police Station Locator', PoliceStationLocatorPage()),
               _buildGrayBox(context, Icons.question_answer, 'FAQ', FAQPage()),
-              _buildGrayBox(context, Icons.calculate, 'Fare Calculator', FareCalculatorPage()),
+              _buildGrayBox(context, Icons.calculate, 'Fare Calculator', FareCalculator()),
             ],
           ),
         ),

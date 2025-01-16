@@ -3,13 +3,18 @@ import 'screens/lib/screens/splash.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'screens/lib/providers/language_provider.dart';
+import 'screens/lib/providers/fare_provider.dart';
+
 // Adjust the import path
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (_) => LanguageProvider(),
-      child: MyApp(),
+    MultiProvider(
+        providers:[
+          ChangeNotifierProvider(create: (_) => LanguageProvider()),
+          ChangeNotifierProvider(create: (_) => FareCalculator()),
+        ],
+            child: MyApp(),
     ),
   );
 }
