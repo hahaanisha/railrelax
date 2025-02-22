@@ -63,7 +63,7 @@ class _FetchPageState extends State<FetchPage> {
       });
 
       final response = await http.get(
-        Uri.parse('http://192.168.254.92:5000/get_count'),
+        Uri.parse('http://192.168.219.92:5000/get_count'),
       ).timeout(
         const Duration(seconds: 10),
         onTimeout: () {
@@ -98,7 +98,7 @@ class _FetchPageState extends State<FetchPage> {
         builder: (context) => DetailsPage(
           count: peopleCount,
           cameraId: cameraId,
-          videoUrl: 'http://192.168.254.92:5000/video_feed',
+          videoUrl: 'http://192.168.219.92:5000/video_feed',
         ),
       ),
     );
