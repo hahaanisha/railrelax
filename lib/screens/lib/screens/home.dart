@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:carousel_slider/carousel_slider.dart';
 import 'package:railrelax/screens/lib/lang.dart';
 import 'package:railrelax/screens/lib/screens/chat.dart';
 import 'package:railrelax/screens/lib/screens/faq.dart';
@@ -8,12 +8,17 @@ import 'package:railrelax/screens/lib/screens/map.dart';
 import 'package:railrelax/screens/lib/screens/news.dart';
 import 'package:railrelax/screens/lib/screens/train.dart';
 import 'package:railrelax/screens/lib/screens/ticket.dart';
+import '../train_tracking/add_train.dart';
+import '../train_tracking/schedulePage.dart';
 import 'helpline/PoliceStationLocator.dart';
 import 'contact.dart';
 import 'fare_calculator.dart';
 import 'package:provider/provider.dart';
 import 'package:railrelax/screens/lib/l10n/app_localizations.dart';
 import 'package:railrelax/screens/lib/providers/language_provider.dart';
+// import 'package:carousel_slider/carousel_slider.dart';
+// import 'package:carousel_slider/carousel_controller.dart' as carousel;
+// import 'carousel_controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,7 +28,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final CarouselController carouselController = CarouselController();
+  // final carousel.CarouselController carouselController = carousel.CarouselControllerImpl();
+
+  // final CarouselController carouselController = CarouselController();
   int currentPage = 0;
 
   @override
@@ -36,13 +43,18 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: Colors.blue,
-        title: Text(appLocalizations.getText('railrelax')),
+        title: InkWell(
+            onTap:(){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => AddTrainPage()));
+            } ,
+            child: Text(appLocalizations.getText('railrelax'))),
         leading: IconButton(
           icon: const Icon(Icons.menu),
           onPressed: () {
             scaffoldKey.currentState!.openDrawer();
           },
         ),
+
       ),
       drawer: Drawer(
         backgroundColor: Colors.blue,
@@ -65,7 +77,7 @@ class _HomePageState extends State<HomePage> {
               Navigator.pop(context);
             }),
             _buildDrawerItem(Icons.train, appLocalizations.getText('trackTrains'), context, () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => TrainPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SchedulePage()));
             }),
             _buildDrawerItem(Icons.chat, appLocalizations.getText('liveChat'), context, () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => ChatPage()));
@@ -113,41 +125,41 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // Carousel Section without padding
-            Container(
-              width: MediaQuery.of(context).size.width,
-              child: CarouselSlider(
-                options: CarouselOptions(
-                  height: 200.0,
-                  autoPlay: false,
-                  enlargeCenterPage: false,
-                  viewportFraction: 1.0,
-                  aspectRatio: 16 / 9,
-                  autoPlayCurve: Curves.easeInOut,
-                  enableInfiniteScroll: true,
-                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                  onPageChanged: (index, reason) {
-                    setState(() {
-                      currentPage = index;
-                    });
-                  },
-                ),
-                items: [
-                  'assets/homepage_banner.png',
-                  'assets/homepage_banner_2.png',
-                  'assets/homepage_banner_3.png'
-                ].map((i) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Image.asset(
-                        i,
-                        fit: BoxFit.cover,
-                        width: MediaQuery.of(context).size.width,
-                      );
-                    },
-                  );
-                }).toList(),
-              ),
-            ),
+            // Container(
+            //   width: MediaQuery.of(context).size.width,
+            //   child: CarouselSlider(
+            //     options: CarouselOptions(
+            //       height: 200.0,
+            //       autoPlay: false,
+            //       enlargeCenterPage: false,
+            //       viewportFraction: 1.0,
+            //       aspectRatio: 16 / 9,
+            //       autoPlayCurve: Curves.easeInOut,
+            //       enableInfiniteScroll: true,
+            //       autoPlayAnimationDuration: const Duration(milliseconds: 800),
+            //       onPageChanged: (index, reason) {
+            //         setState(() {
+            //           currentPage = index;
+            //         });
+            //       },
+            //     ),
+            //     items: [
+            //       'assets/homepage_banner.png',
+            //       'assets/homepage_banner_2.png',
+            //       'assets/homepage_banner_3.png'
+            //     ].map((i) {
+            //       return Builder(
+            //         builder: (BuildContext context) {
+            //           return Image.asset(
+            //             i,
+            //             fit: BoxFit.cover,
+            //             width: MediaQuery.of(context).size.width,
+            //           );
+            //         },
+            //       );
+            //     }).toList(),
+            //   ),
+            // ),
             // Dots Indicator
             Padding(
               padding: const EdgeInsets.only(top: 8.0, bottom: 8.0),
