@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "719683381257",
+    "project_id": "railrelax-abaac",
+    "storage_bucket": "railrelax-abaac.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:719683381257:android:3e13922244fca81bfdb0d8",
+        "android_client_info": {
+          "package_name": "com.example.railrelax"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8NLCfFYj9X5Cktdk5dRjegfUHbmeGv7Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
