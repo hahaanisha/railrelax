@@ -1,28 +1,7 @@
-// main.dart
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
-//
-// void main() {
-//   runApp(const MyApp());
-// }
 
-// class FetchPage extends StatelessWidget {
-//   const FetchPage({super.key});
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'RAILRELAX',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: const HomePage(),
-//     );
-//   }
-// }
-
-// HomePage
 class FetchPage extends StatefulWidget {
   const FetchPage({super.key});
 
@@ -40,7 +19,6 @@ class _FetchPageState extends State<FetchPage> {
   void initState() {
     super.initState();
     fetchCount();
-    // Set up periodic polling every 5 seconds
     Future.delayed(Duration.zero, () {
       _startPeriodicFetch();
     });
@@ -63,7 +41,7 @@ class _FetchPageState extends State<FetchPage> {
       });
 
       final response = await http.get(
-        Uri.parse('http://192.168.219.92:5000/get_count'),
+        Uri.parse('http://192.168.22.92:5000/get_count'),
       ).timeout(
         const Duration(seconds: 10),
         onTimeout: () {
@@ -98,10 +76,43 @@ class _FetchPageState extends State<FetchPage> {
         builder: (context) => DetailsPage(
           count: peopleCount,
           cameraId: cameraId,
-          videoUrl: 'http://192.168.219.92:5000/video_feed',
+          videoUrl: 'http://192.168.22.92:5000/video_feed',
         ),
       ),
     );
+  }
+
+  List<Widget> _getPersonIcons() {
+    if (peopleCount >= 1 && peopleCount <= 5) {
+      // 1 green icon for count 1-5
+      return [
+        const Icon(
+          Icons.directions_walk,
+          color: Colors.green,
+        ),
+      ];
+    } else if (peopleCount > 5 && peopleCount <= 10) {
+      // 2 yellow icons for count 6-10
+      return List.generate(
+        2,
+            (index) => const Icon(
+          Icons.directions_walk,
+          color: Colors.orange,
+        ),
+      );
+    } else if (peopleCount > 10) {
+      // 3 red icons for count > 10
+      return List.generate(
+        3,
+            (index) => const Icon(
+          Icons.directions_walk,
+          color: Colors.red,
+        ),
+      );
+    } else {
+      // No icons for count 0
+      return [];
+    }
   }
 
   @override
@@ -159,14 +170,10 @@ class _FetchPageState extends State<FetchPage> {
                         ),
                       ),
                       SizedBox(width: size.width * 0.1),
-                      for (int i = 0; i < peopleCount; i++)
-                        const Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 2),
-                          child: Icon(
-                            Icons.directions_walk,
-                            color: Colors.blue,
-                          ),
-                        ),
+                      ..._getPersonIcons().map((icon) => Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 2),
+                        child: icon,
+                      )),
                       const Spacer(),
                       Text(
                         'Count: $peopleCount',
@@ -187,7 +194,6 @@ class _FetchPageState extends State<FetchPage> {
   }
 }
 
-// DetailsPage
 class DetailsPage extends StatelessWidget {
   final int count;
   final String cameraId;
@@ -199,6 +205,42 @@ class DetailsPage extends StatelessWidget {
     required this.cameraId,
     required this.videoUrl,
   }) : super(key: key);
+
+  List<Widget> _getPersonIcons() {
+    if (count >= 1 && count <= 5) {
+      // 1 green icon for count 1-5
+      return [
+        const Icon(
+          Icons.directions_walk,
+          size: 32,
+          color: Colors.green,
+        ),
+      ];
+    } else if (count > 5 && count <= 10) {
+      // 2 yellow icons for count 6-10
+      return List.generate(
+        2,
+            (index) => const Icon(
+          Icons.directions_walk,
+          size: 32,
+          color: Colors.yellow,
+        ),
+      );
+    } else if (count > 10) {
+      // 3 red icons for count > 10
+      return List.generate(
+        3,
+            (index) => const Icon(
+          Icons.directions_walk,
+          size: 32,
+          color: Colors.red,
+        ),
+      );
+    } else {
+      // No icons for count 0
+      return [];
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -264,17 +306,10 @@ class DetailsPage extends StatelessWidget {
                       padding: const EdgeInsets.all(16.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          for (int i = 0; i < count; i++)
-                            const Padding(
-                              padding: EdgeInsets.all(4.0),
-                              child: Icon(
-                                Icons.directions_walk,
-                                size: 32,
-                                color: Colors.blue,
-                              ),
-                            ),
-                        ],
+                        children: _getPersonIcons().map((icon) => Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: icon,
+                        )).toList(),
                       ),
                     ),
                   ),
